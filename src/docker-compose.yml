@@ -1,0 +1,43 @@
+version: '3.7'
+services:
+  mysql-db:
+    image: melmesary/mysqldb:v1.0  
+    container_name: mysql-db
+    hostname: mysql-db
+    restart: always
+    networks:
+    - backend
+    volumes:
+    - db_data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+  app:
+    image: melmesary/flaskapi:v1.0
+    container_name: app
+    restart: always
+    networks:
+      - frontend
+      - backend
+    depends_on:
+    - mysql-db
+    build:
+      context: .
+      dockerfile: Dockerfile
+      no_cache: true
+    ports:
+      - 5000:5000
+    environment:
+      MYSQL_HOST: mysql-db
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: "1234"
+      MYSQL_DB: elmesary
+      MYSQL_PORT: 3306
+networks:
+  frontend:
+  backend:
+    internal: true
+
+volumes:
+  db_data:

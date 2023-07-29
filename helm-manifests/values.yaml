@@ -1,0 +1,42 @@
+app:
+  name: app
+  replicaCount: 2
+  minreplicas: 1
+  maxreplicas: 3
+  average_utilization: 70
+  image:
+    repository: melmesary/flaskapi
+    tag: v1.0
+    name: app
+    port: 5000
+    security_context: 
+      run_as_user: 1000
+      run_as_group: 3000
+    env:
+      mysql_db: "elmesary"
+      mysql_port: "3306"
+      mysql_user: "admin"
+      mysql_pass: "1234"
+
+mysql:
+  replicaCount: 2
+  minreplicas: 1
+  maxreplicas: 3
+  average_utilization: 70
+  name: mysql
+  image:
+    repository: melmesary/mysqldb
+    tag: v1.0
+    port: 3306
+    env: 
+      mysql_root_password: "root"
+  volumeclaimtemplates:
+    name: data-vol
+    spec:
+      accessmodes: ReadWriteOnce
+      resources:
+        request:
+          storage: 1Gi
+
+storageclass:
+  name: "ebs-storage"

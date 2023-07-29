@@ -1,0 +1,106 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: {{ .Values.app.name }}
+  name: {{ .Values.app.name }}
+spec:
+  replicas: {{ .Values.app.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.app.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.app.name }}
+    spec:
+      containers:
+      - image: {{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}
+        name: {{ .Values.app.image.name}}
+        securityContext:
+          runAsUser: {{ .Values.app.image.security_context.run_as_user }}
+          runAsGroup: {{ .Values.app.image.security_context.run_as_group }}
+        ports:
+        - containerPort: {{ .Values.app.image.port }}
+        env:
+        - name: MYSQL_DB
+          value: "{{ .Values.app.image.env.mysql_db }}"
+        - name: MYSQL_PORT
+          value: "{{ .Values.app.image.env.mysql_port }}"
+        - name: MYSQL_HOST
+          value: "{{.Values.mysql.name}}-h"
+        - name: MYSQL_USER
+          value: "{{ .Values.app.image.env.mysql_user }}"
+        - name: MYSQL_PASSWORD
+          value: "{{ .Values.app.image.env.mysql_pass }}"
+                
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{.Values.app.name}}-svc
+  labels:
+    app: {{.Values.app.name}}-svc
+spec:
+  type: LoadBalancer  # to expose service to public
+  ports:
+  - targetPort: {{ .Values.app.image.port }}
+    port: {{ .Values.app.image.port }}
+
+  selector:
+    app: {{.Values.app.name}}
+---
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app: {{.Values.mysql.name}}
+  name: {{.Values.mysql.name}}
+spec:
+  replicas: {{.Values.mysql.replicaCount}}
+  selector:
+    matchLabels:
+      app: {{.Values.mysql.name}}
+  serviceName: {{.Values.mysql.name}}-h
+  template:
+    metadata:
+      labels:
+        app: {{.Values.mysql.name}}
+    spec:
+      containers:
+      - image: {{.Values.mysql.image.repository}}:{{.Values.mysql.image.tag}}
+        name: {{.Values.mysql.name}}
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: {{ .Values.mysql.image.env.mysql_root_password}}
+        ports:
+        - containerPort: {{ .Values.mysql.image.port }}
+        volumeMounts:
+        - name: {{ .Values.mysql.volumeclaimtemplates.name }}
+          mountPath: /var/lib/mysql
+  volumeClaimTemplates:
+  - metadata:
+      name: {{ .Values.mysql.volumeclaimtemplates.name}}
+    spec:
+      accessModes: 
+      - {{.Values.mysql.volumeclaimtemplates.spec.accessmodes}}
+      storageClassName: {{.Values.storageclass.name}}
+      resources:
+        requests:
+          storage: {{.Values.mysql.volumeclaimtemplates.spec.resources.request.storage}}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{.Values.mysql.name}}-h
+spec:
+  clusterIP: None
+  selector:
+    app: {{.Values.mysql.name}}
+  ports:
+  - port: {{ .Values.mysql.image.port }}
+    targetPort: {{ .Values.mysql.image.port }}
+---
