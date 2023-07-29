@@ -3,12 +3,12 @@ entries:
   helm-manifests:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-07-30T01:33:23.818671+03:00"
+    created: "2023-07-30T01:40:10.163338+03:00"
     description: A Helm chart for Kubernetes
     digest: 8b3556306cd1ebc69fd778d177ee8ae4d8fcfb2bcce4e35806ae29504ac38918
     name: helm-manifests
     type: application
     urls:
-    - https://github.com/mmelmesary/Automated-DevOps-Project.git/helm-manifests-0.1.0.tgz
+    - https://github.com/mmelmesary/Automated-DevOps-Project/helm-chart/helm-manifests-0.1.0.tgz
     version: 0.1.0
-generated: "2023-07-30T01:33:23.8163867+03:00"
+generated: "2023-07-30T01:40:10.163338+03:00"
