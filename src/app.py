@@ -14,8 +14,8 @@ app.config["MYSQL_PORT"] = mysql_port
 mysql = MySQL(app)
 
 @app.route("/")
-def hello_world():
-    return "Hello World!"
+def hello_there():
+    return "Hello there!"
 
 @app.route("/data", methods=["GET"])
 def get_data():
