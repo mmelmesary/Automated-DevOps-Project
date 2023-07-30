@@ -16,28 +16,28 @@ ___
 ## Table of Contents
 
 **`STEP 1`: Dockerize python Application**
-  - Instructions: Link to Step 1 
+  - Instructions: [Link to Step 1](https://github.com/mmelmesary/Automated-DevOps-Project#step-1--dockerized-golang-application) 
 
 **`STEP 2`: Dockerize custom mysql db**
-  - Instructions: Link to Step 2
+  - Instructions: [Link to Step 2](https://github.com/mmelmesary/Automated-DevOps-Project#step-2--dockerize-custom-mysql-db)
 
 **`STEP 3`: Configure Docker to Run inside Jenkins**
-  - Instructions: Link to Step 1 
+  - Instructions: [Link to Step 3](https://github.com/mmelmesary/Automated-DevOps-Project#step-3-configure-docker-to-run-inside-jenkins)
 
 **`STEP 4`: Define a pipline job using jenkinsfile**
-  - Instructions: Link to Step 1 
+  - Instructions: [Link to Step 4](https://github.com/mmelmesary/Automated-DevOps-Project#step-4-define-a-pipline-job-using-jenkinsfile)
 
 **`STEP 5`: Build the Docker-compose file**
-  - Instructions: Link to Step 1 
+  - Instructions: [Link to Step 5](https://github.com/mmelmesary/Automated-DevOps-Project#step-5-build-the-docker-compose-file) 
 
 **`STEP 6`: Deploying the Application on Kubernetes with Helm**
-  - Instructions: Link to Step 1 
+  - Instructions: [Link to Step 6](https://github.com/mmelmesary/Automated-DevOps-Project#step-6-deploying-the-application-on-kubernetes-with-helm) 
 
 **`STEP 7`: Create Public Helm Chart Repository with GitHub Pages**
-  - Instructions: Link to Step 1 
+  - Instructions: [Link to Step 7](https://github.com/mmelmesary/Automated-DevOps-Project#step-7--create-public-helm-chart-repository-with-github-pages) 
 
 **`STEP 8`: Install & Configure ArgoCD for GitOps Automation**
-  - Instructions: Link to Step 1 
+  - Instructions: [Link to Step 8](https://github.com/mmelmesary/Automated-DevOps-Projec#step-8--install-&-configure-argocd-for-gitops-automation) 
 
 ___
 
@@ -202,7 +202,7 @@ git push 
 
 ___
 
-## Step 7 : ArgoCD for GitOps automation
+## STEP 8 : Install & Configure ArgoCD for GitOps Automation
 
  #### First: Install ArgoCD and ArgoCD CLI tool
 
