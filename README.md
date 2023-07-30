@@ -166,9 +166,13 @@ To check the app work correctly , run the following command:
 ```bash
 curl localhost:5000
 ```
-it returns an `Hello there!` message
+> it should returns an `Hello there!` message
 
-you can also try to preform some CRUD operations to the db
+**You can also try to preform some CRUD operations to the db**
+
+![get-data](./pictures/get-data.PNG)
+
+![post-data](./pictures/post-data.PNG)
 
 ___
 
