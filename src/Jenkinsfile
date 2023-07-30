@@ -41,7 +41,7 @@ pipeline {
                     def dockerRegistry = 'melmesary'
 
                     // Build Docker image
-                    sh "docker build -t ${dockerRegistry}/${dockerImage}:${dockerTag} -f jenkins_with_docker.dockerfile ."
+                    sh "docker build -t ${dockerRegistry}/${dockerImage}:${dockerTag} -f db.dockerfile ."
 
                     // Check if build was successful
                     if (
