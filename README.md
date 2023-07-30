@@ -3,6 +3,7 @@
 ## Description
 
 **🚨 This DevOps project showcases how to use :**
+- Python Flask RESTful API for MySQL CRUD
 - Dockerfile 
 - Jenkinsfile 
 - docker-compose
@@ -15,52 +16,69 @@ ___
 
 ## Table of Contents
 
-**`STEP 1`: Dockerize python Application**
-  - Instructions: [Link to Step 1](https://github.com/mmelmesary/Automated-DevOps-Project#step-1--dockerized-golang-application) 
+**`STEP 1`: Create a CRUD Restful Service API using Flask + Mysql**
+  - Instructions: [Link to Step 1]() 
 
-**`STEP 2`: Dockerize custom mysql db**
-  - Instructions: [Link to Step 2](https://github.com/mmelmesary/Automated-DevOps-Project#step-2--dockerize-custom-mysql-db)
+**`STEP 2`: Dockerize python Application**
+  - Instructions: [Link to Step 2](https://github.com/mmelmesary/Automated-DevOps-Project#step-2--dockerized-golang-application) 
 
-**`STEP 3`: Configure Docker to Run inside Jenkins**
-  - Instructions: [Link to Step 3](https://github.com/mmelmesary/Automated-DevOps-Project#step-3-configure-docker-to-run-inside-jenkins)
+**`STEP 3`: Dockerize custom mysql db**
+  - Instructions: [Link to Step 3](https://github.com/mmelmesary/Automated-DevOps-Project#step-3--dockerize-custom-mysql-db)
 
-**`STEP 4`: Define a pipline job using jenkinsfile**
-  - Instructions: [Link to Step 4](https://github.com/mmelmesary/Automated-DevOps-Project#step-4-define-a-pipline-job-using-jenkinsfile)
+**`STEP 4`: Configure Docker to Run inside Jenkins**
+  - Instructions: [Link to Step 4](https://github.com/mmelmesary/Automated-DevOps-Project#step-4-configure-docker-to-run-inside-jenkins)
 
-**`STEP 5`: Build the Docker-compose file**
-  - Instructions: [Link to Step 5](https://github.com/mmelmesary/Automated-DevOps-Project#step-5-build-the-docker-compose-file) 
+**`STEP 5`: Define a pipline job using jenkinsfile**
+  - Instructions: [Link to Step 5](https://github.com/mmelmesary/Automated-DevOps-Project#step-5-define-a-pipline-job-using-jenkinsfile)
 
-**`STEP 6`: Deploying the Application on Kubernetes with Helm**
-  - Instructions: [Link to Step 6](https://github.com/mmelmesary/Automated-DevOps-Project#step-6-deploying-the-application-on-kubernetes-with-helm) 
+**`STEP 6`: Build the Docker-compose file**
+  - Instructions: [Link to Step 6](https://github.com/mmelmesary/Automated-DevOps-Project#step-6-build-the-docker-compose-file) 
 
-**`STEP 7`: Create Public Helm Chart Repository with GitHub Pages**
-  - Instructions: [Link to Step 7](https://github.com/mmelmesary/Automated-DevOps-Project#step-7--create-public-helm-chart-repository-with-github-pages) 
+**`STEP 7`: Deploying the Application on Kubernetes with Helm**
+  - Instructions: [Link to Step 7](https://github.com/mmelmesary/Automated-DevOps-Project#step-7-deploying-the-application-on-kubernetes-with-helm) 
 
-**`STEP 8`: Install & Configure ArgoCD for GitOps Automation**
-  - Instructions: [Link to Step 8](https://github.com/mmelmesary/Automated-DevOps-Projec#step-8--install-&-configure-argocd-for-gitops-automation) 
+**`STEP 8`: Create Public Helm Chart Repository with GitHub Pages**
+  - Instructions: [Link to Step 8](https://github.com/mmelmesary/Automated-DevOps-Project#step-8--create-public-helm-chart-repository-with-github-pages) 
+
+**`STEP 9`: Install & Configure ArgoCD for GitOps Automation**
+  - Instructions: [Link to Step 9](https://github.com/mmelmesary/Automated-DevOps-Project#step-9--install--configure-argocd-for-gitops-automation) 
 
 ___
 
-## Step 1 : Dockerized Golang Application 
+## STEP 1: Create a CRUD Restful Service API using Flask + Mysql
 
-This is a simple Flask application that provides CRUD (Create, Read, Update, Delete) operations for a MySQL database. The application allows you to manage user information, including their name, age, and job title. It is designed to be used with a MySQL database, and you can easily configure the necessary environment variables to connect to your desired database instance.
+In this step, we will build a simple web application using Python Flask that can read from and write to a MySQL database. The main objectives are to:
+
+  - Learn how to build a RESTful web service with Flask.
+  - Implement CRUD operations to manage data in a MySQL database.
+  - Understand how to connect a Flask application to a MySQL database.
+
+> For the source code, check  [app.py](./src/app.py)
+
+___
+
+## Step 2 : Dockerize python flask Application 
+
+This is a simple Flask application that provides CRUD (Create, Read, Update, Delete) operations for a MySQL database. The application allows you to manage **user information**, including their *name*, *age*, and *job title*. It is designed to be used with a MySQL database, and you can easily configure the necessary environment variables to connect to your desired database instance.
 
 The [Dockerfile](./src/Dockerfile) containes the instrutions how to build and run a flask application using Docker, and it exposes the application on port `5000`.
 
-
 ______ 
 
- ## Step 2 : Dockerize custom mysql db
+ ## Step 3 : Dockerize custom mysql db
 
 The main purpose of this step is to create a custom MySQL Docker image with pre-initialized data. The Docker image is built upon the official MySQL Docker image (mysql:latest), which ensures the latest stable version of MySQL is used.
 
-Review the [init.sql](./src/init.sql) file: The init.sql file contains the necessary SQL statements to create the database schema and the table, as well as insert the initial data into the MySQL database. You can customize this file to include your specific data requirements.
+**Review the [init.sql](./src/init.sql) file:** 
+
+  The init.sql file contains the necessary SQL statements to create the database schema and the table, as well as insert the initial data into the MySQL database. You can customize this file to include your specific data requirements.
+
 
 The [db.dockerfile](./src/db.dockerfile) containes the instrutions how to build and run a custom mysql db container using Docker.
 
 ___
 
-## STEP 3: Configure Docker to Run inside Jenkins
+## STEP 4: Configure Docker to Run inside Jenkins
 
 **To be able to run Docker commands from inside the jenkins, you need to have Jenkins installed and install docker-client plugin to run the Docker commands inside Jenkins. Also You'll need to set up your DockerHub credentials in Jenkins**
 
@@ -95,7 +113,7 @@ Open the Jenkins UI
 
 ___
 
-## STEP 4: Define a pipline job using jenkinsfile
+## STEP 5: Define a pipline job using jenkinsfile
 
 the [Jenkinsfile](./src/Jenkinsfile) file defines a pipeline job for building the flask app and the custom mysql db containers using the Dockerfile and reporting any errors that occur during the build process.
 
@@ -128,7 +146,7 @@ Once the pipeline finishes successfully, you should see something like this:
 
 ___
 
-## STEP 5: Build the Docker-compose file
+## STEP 6: Build the Docker-compose file
 
 **The `docker-compose.yml` file defines a multi-container application that includes two services: a custom MySQL database service and our Flask application service, both of which are containerized and can work together seamlessly.**
 
@@ -154,7 +172,7 @@ you can also try to preform some CRUD operations to the db
 
 ___
 
-## STEP 6: Deploying the Application on Kubernetes with Helm
+## STEP 7: Deploying the Application on Kubernetes with Helm
 
 **`Prerequisites`**: deploy an EKS cluster and install `EBS CSI driver` as an Amazon EKS add-on.
 
@@ -166,7 +184,7 @@ To deploy the application on Kubernetes, we'll use **Helm**, a package manager f
 **To ensure that the application can handle increased traffic and load, we add an `autoscaling manifest` that scales the number of replicas based on resource usage metrics.**
 ___
 
-# Step 7 : Create Public Helm Chart Repository with GitHub Pages
+# STEP 8: Create Public Helm Chart Repository with GitHub Pages
 
 **1. Packaging the Helm Chart and Signing a Secret Key**
 
@@ -202,7 +220,7 @@ git push 
 
 ___
 
-## STEP 8 : Install & Configure ArgoCD for GitOps Automation
+## STEP 9: Install & Configure ArgoCD for GitOps Automation
 
  #### First: Install ArgoCD and ArgoCD CLI tool
 

@@ -1,7 +1,11 @@
 version: '3.7'
+
 services:
   mysql-db:
-    image: melmesary/mysqldb:v1.0  
+    build:
+      context: .
+      dockerfile: db.dockerfile
+      no_cache: true
     container_name: mysql-db
     hostname: mysql-db
     restart: always
@@ -14,7 +18,10 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
   app:
-    image: melmesary/flaskapi:v1.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+      no_cache: true
     container_name: app
     restart: always
     networks:
@@ -22,10 +29,6 @@ services:
       - backend
     depends_on:
     - mysql-db
-    build:
-      context: .
-      dockerfile: Dockerfile
-      no_cache: true
     ports:
       - 5000:5000
     environment:
