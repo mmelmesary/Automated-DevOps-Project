@@ -17,7 +17,7 @@ ___
 ## Table of Contents
 
 **`STEP 1`: Create a CRUD Restful Service API using Flask + Mysql**
-  - Instructions: [Link to Step 1]() 
+  - Instructions: [Link to Step 1](https://github.com/mmelmesary/Automated-DevOps-Project/tree/main#step-1-create-a-crud-restful-service-api-using-flask--mysql) 
 
 **`STEP 2`: Dockerize python Application**
   - Instructions: [Link to Step 2](https://github.com/mmelmesary/Automated-DevOps-Project#step-2--dockerized-golang-application) 

@@ -10,7 +10,7 @@ pipeline {
                     def dockerRegistry = 'melmesary'
 
                     // Build Docker image
-                    sh "docker build -t ${dockerRegistry}/${dockerImage}:${dockerTag} ."
+                    sh "docker build -t ${dockerRegistry}/${dockerImage}:${dockerTag} ./src"
 
                     // Check if build was successful
                     if (
@@ -41,7 +41,7 @@ pipeline {
                     def dockerRegistry = 'melmesary'
 
                     // Build Docker image
-                    sh "docker build -t ${dockerRegistry}/${dockerImage}:${dockerTag} -f db.dockerfile ."
+                    sh "docker build -t ${dockerRegistry}/${dockerImage}:${dockerTag} -f db.dockerfile ./src"
 
                     // Check if build was successful
                     if (
