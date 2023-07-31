@@ -144,8 +144,6 @@ Once the pipeline finishes successfully, you should see something like this:
 
 > ![pipeline-success](./pictures/pipeline-success.PNG)
  
-> ![pipeline-sucess](./pictures/pipeline-success-2.PNG)
-
 
 You can also check that the two images pushed successfully to dockerhub
 
