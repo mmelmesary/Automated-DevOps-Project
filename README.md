@@ -14,6 +14,9 @@
 
 ___
 
+## Architecture Diagram 
+
+![architecture-diagram](./pictures/architecture%20diagram.png)
 ## Table of Contents
 
 **`STEP 1`: Create a CRUD Restful Service API using Flask + Mysql**
@@ -299,9 +302,9 @@ To deploy our app configuration, run the following command:
 kubectl apply -f argocd-app.yaml
 ```
 
-![ArgoCD-UI](./pictures/ArgoCD-UI.PNG)
+> ![ArgoCD-UI](./pictures/ArgoCD-UI.PNG)
 
-![ArgoCD-app](./pictures/ArgoCD-app.PNG)
+> ![ArgoCD-app](./pictures/ArgoCD-app.PNG)
 
 
 **We can check that all the application components are up and running by running the following command**
