@@ -76,6 +76,7 @@ The main purpose of this step is to create a custom MySQL Docker image with pre-
 
 The [db.dockerfile](./src/db.dockerfile) containes the instrutions how to build and run a custom mysql db container using Docker.
 
+
 ___
 
 ## STEP 4: Configure Docker to Run inside Jenkins
@@ -111,6 +112,7 @@ Open the Jenkins UI
 
 > ![docker-credentials](./pictures/dokcerhub-credentials.PNG) 
 
+
 ___
 
 ## STEP 5: Define a pipline job using jenkinsfile
@@ -143,6 +145,12 @@ Once the pipeline finishes successfully, you should see something like this:
 > ![pipeline-success](./pictures/pipeline-success.PNG)
  
 > ![pipeline-sucess](./pictures/pipeline-success-2.PNG)
+
+
+You can also check that the two images pushed successfully to dockerhub
+
+![docker-images](./pictures/docker-images.PNG)
+
 
 ___
 
@@ -297,10 +305,41 @@ kubectl apply -f argocd-app.yaml
 
 ![ArgoCD-app](./pictures/ArgoCD-app.PNG)
 
-I use [`lens`](https://k8slens.dev/) to provide a powerful and intuitive way to view and manage our Kubernetes clusters
 
-![lens](./pictures/lens-screenshot.PNG)
-![pvc](./pictures/pvc.PNG)
+**We can check that all the application components are up and running by running the following command**
+
+  ```bash
+  kubectl get all -n app-system
+  ```
+
+you should see an output like this: 
+
+```
+NAME                       READY   STATUS              RESTARTS   AGE
+pod/app-5cfb949b6f-wvt9n   1/1     Running             0          2m29s
+pod/app-5cfb949b6f-zsrqz   1/1     Running             0          2m29s
+pod/mysql-0                1/1     Running             0          13s
+pod/mysql-1                0/1     ContainerCreating   0          9s
+
+NAME              TYPE           CLUSTER-IP      EXTERNAL-IP
+                   PORT(S)          AGE
+service/app-svc   LoadBalancer   10.100.58.102   a7fd03b3d6ee44b058d3418d4baa167f-823608265.us-east-1.elb.amazonaws.com   5000:30878/TCP   2m29s
+service/mysql-h   ClusterIP      None            <none>
+                   3306/TCP         2m29s
+
+NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/app   2/2     2            2           2m30s
+
+NAME                             DESIRED   CURRENT   READY   AGE
+replicaset.apps/app-5cfb949b6f   2         2         2       2m30s
+
+NAME                     READY   AGE
+statefulset.apps/mysql   2/2     2m30s
+
+NAME                                            REFERENCE           TARGETS         MINPODS   MAXPODS   REPLICAS   AGE
+horizontalpodautoscaler.autoscaling/app-hpa     Deployment/app      <unknown>/70%   1         3         2          2m30s
+horizontalpodautoscaler.autoscaling/mysql-hpa   StatefulSet/mysql   <unknown>/70%   1         3         2          2m30s
+```
 
 **Access the application using frontend-external service `loadbalancer`**
 
