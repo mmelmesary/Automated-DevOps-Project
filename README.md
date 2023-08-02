@@ -44,7 +44,7 @@ ___
   - Instructions: [Link to Step 8](https://github.com/mmelmesary/Automated-DevOps-Project#step-8--create-public-helm-chart-repository-with-github-pages) 
 
 **`STEP 9`: Install & Configure ArgoCD for GitOps Automation**
-  - Instructions: [Link to Step 9](https://github.com/mmelmesary/Automated-DevOps-Project#step-9--install--configure-argocd-for-gitops-automation) 
+  - Instructions: [Link to Step 9](https://github.com/mmelmesary/Automated-DevOps-Project#step-9-install--configure-argocd-for-gitops-automation)
 
 ___
 
