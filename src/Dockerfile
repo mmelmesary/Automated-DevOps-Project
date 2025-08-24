@@ -1,4 +1,4 @@
-FROM python:3.12.0b4-slim-bullseye AS builder
+FROM python:3.14.0rc1-slim-bullseye AS builder
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends --no-install-suggests \
